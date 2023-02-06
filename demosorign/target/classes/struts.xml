@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <constant name="struts.devMode" value="true" />
+
+    <package name="default" namespace="/" extends="struts-default">
+
+        <action name="" class="mainAction" >
+            <result name="success">pages/home.jsp</result>
+        </action>
+
+        <action name="prestadores" class="prestadoresAction">
+            <result name="success">pages/prestadores.jsp</result>
+        </action>
+
+    </package>
+
+</struts>

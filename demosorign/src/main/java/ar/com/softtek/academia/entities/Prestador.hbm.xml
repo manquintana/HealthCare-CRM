@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="ar.com.softtek.academia.entities.Prestador" table="Prestador" catalog="AFILIADOSG1">
+       <id name="id" type="int">
+           <column name="id" />
+           <generator class="identity" />
+       </id>
+       <property name="nombre" type="string">
+           <column name="Nombre" length="50" not-null="true" unique="true" />
+       </property>
+       <property name="apellido" type="string">
+           <column name="Apellido" length="50" not-null="true" unique="true" />
+       </property>
+       <property name="idPractica" type="int">
+       		<column name="IdPractica" length="50" not-null="true" />
+       </property>
+       
+   </class>
+</hibernate-mapping>

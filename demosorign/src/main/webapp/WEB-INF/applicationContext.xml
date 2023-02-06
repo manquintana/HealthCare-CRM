@@ -1,0 +1,63 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<bean 	id="dataSource" 
+			class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+       		destroy-method="close">
+       	<property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
+       	<!-- <property name="url" value="jdbc:sqlserver://STKABAACADEMIA\SQLEXPRESS:1433;databaseName=AFILIADOSG1" />
+      	<property name="username" value="marx" />
+       	<property name="password" value="academia1" /> -->
+       	<property name="url" value="jdbc:sqlserver://localhost;databaseName=AFILIADOSG1" />
+      	<property name="username" value="sa" />
+       	<property name="password" value="sa" />
+   </bean>
+   <!-- Hibernate session factory -->
+    <bean id="sessionFactory"
+        class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="mappingResources">
+            <list>
+                <value>ar/com/softtek/academia/entities/Prestador.hbm.xml</value>
+            </list>
+        </property>
+        
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</prop>
+                <prop key="hibernate.format_sql">true</prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.default_schema">dbo</prop>
+            </props>
+        </property>
+        </bean>
+        
+    <bean id="mainAction" class="ar.com.softtek.academia.action.MainAction">
+        <property name="titulo" value="Pagina Principal"></property>
+    </bean>
+
+    <bean id="prestadoresBO" class="ar.com.softtek.academia.bo.impl.PrestadoresBOImpl">
+     	<property name="mapper" ref="mapper"></property>
+      	<property name="prestadoresDAO" ref="prestadoresDAO"></property>
+    </bean>
+
+    <bean id="prestadoresAction" class="ar.com.softtek.academia.action.PrestadoresAction">
+        <property name="prestadoresBO" ref="prestadoresBO"></property>
+    </bean>
+	
+	<bean id="prestadoresDAO" class="ar.com.softtek.academia.dao.impl.PrestadoresDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean> 
+     
+     <!-- <bean id="prestadoresDAO" class="ar.com.softtek.academia.dao.impl.PrestadoresDAOImpl">
+     </bean> -->
+    
+    <bean id="mapper" class="ar.com.softtek.academia.mapper.PrestadorMapper">
+    
+    </bean>
+    
+   
+    
+</beans>
